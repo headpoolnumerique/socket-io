@@ -1,2 +1,0 @@
-# veiller
-# socket-io
