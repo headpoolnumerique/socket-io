@@ -16,5 +16,30 @@ Number of visitors on the site: 2
 
 You can start with this base and add pieces of code you already have. Or start writing adding your code on the repository cloned on your local via the terminal (see below). Don't forget to first **<u>fork</u>** the repository on your Github profile if you are using the platform.
 
+### How does the code work?
 
+You have two types of files: server and client files.
+
+The server file is called `index.js`. The client files are inside the `/public` folder.
+
+In the `index.js`, you have this commented of code:
+
+```
+// This is where the socket.io engine 'listens' for client connections
+io.on('connection', (socket) => {
+
+	// This is a built-in function to get the number of 'clients' logged in;
+  nbr_user = io.engine.clientsCount ;
+  // this is where you emit - send to the client - the data you want to send;
+  io.emit('usercount', io.engine.clientsCount)
+
+	// This is where the socket.io engine 'listens' for client disconnections
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+    console.log('nbr connected : ', io.engine.clientsCount)
+    io.emit('usercount', io.engine.clientsCount)
+  })
+  
+})
+```
 
